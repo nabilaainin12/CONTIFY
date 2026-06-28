@@ -1,0 +1,78 @@
+POST  http://127.0.0.1:8000/api/register
+pada Body -> JSON isi dengan
+{
+    "name": "name",
+    "email": "user/admin@gmail.com",(yang ada didataabse)
+    "phone": "08123456789",
+    "password": "password123"
+}
+
+POST  http://127.0.0.1:8000/api/login
+pada Body -> JSON isi dengan
+
+{
+  "email": "user/admin@gmail.com", (yang ada didatabase)
+  "password": "password123"
+}
+
+USER
+GET   http://127.0.0.1:8000/api/profile
+GET   http://127.0.0.1:8000/api/packages
+
+POST
+POST  http://127.0.0.1:8000/api/orders
+pada Body -> JSON isi dengan (misalnya)
+
+{
+  "package_id": 1,
+  "title": "Konten Instagram",
+  "notes": "Membutuhkan desain feed",
+  "booking_date": "2026-07-01"
+}
+
+GET   http://127.0.0.1:8000/api/orders
+GET   http://127.0.0.1:8000/api/orders/{order}
+pada Body -> JSON isi dengan (misalnya)
+
+{
+  "title": "Konten TikTok",
+  "notes": "Konten promosi terbaru",
+  "booking_date": "2026-07-02"
+}
+
+PUT   http://127.0.0.1:8000/api/orders/{order}
+PUT   http://127.0.0.1:8000/api/orders/{order}/cancel
+
+Catatan: Ganti {order} dengan ID order, misalnya 1, 5, atau ID lain yang ada di database.
+
+PAYMENTS
+GET   http://127.0.0.1:8000/api/orders/{order}/payment
+POST  http://127.0.0.1:8000/api/orders/{order}/payment
+POST  http://127.0.0.1:8000/api/payments/{payment}/upload-proof
+
+Catatan: Ganti {payment} dengan ID payment.
+
+ADMIN
+GET   http://127.0.0.1:8000/api/admin/dashboard
+GET   http://127.0.0.1:8000/api/admin/orders
+GET   http://127.0.0.1:8000/api/admin/orders/{order}
+PUT   http://127.0.0.1:8000/api/admin/orders/{order}/status
+GET   http://127.0.0.1:8000/api/admin/payments
+PUT   http://127.0.0.1:8000/api/admin/payments/{payment}/verify
+PUT   http://127.0.0.1:8000/api/admin/payments/{payment}/reject
+GET   http://127.0.0.1:8000/api/admin/packages
+GET   http://127.0.0.1:8000/api/admin/customers
+GET   http://127.0.0.1:8000/api/admin/teams
+GET   http://127.0.0.1:8000/api/admin/vouchers
+GET   http://127.0.0.1:8000/api/admin/quotas
+
+
+CARA MENJALANKAN  BACKEND
+composer install
+2. cp .env.example .env
+3. php artisan key:generate
+4. Buat database "contify"
+5. Import contify.sql
+6. php artisan migrate (jika diperlukan)
+7. php artisan serve
+8. kemudian lanjut ke tahap backend api
